@@ -1,6 +1,6 @@
 # $Author: ddumont $
-# $Date: 2009-09-24 12:00:47 +0200 (jeu 24 sep 2009) $
-# $Revision: 1031 $
+# $Date: 2009-09-27 16:02:38 +0200 (dim 27 sep 2009) $
+# $Revision: 1036 $
 
 #    Copyright (c) 2009 Dominique Dumont.
 #
@@ -40,6 +40,7 @@ my $build = Module::Build->new
 		     'Config::Model'   => '0.637',
 		     'Log::Log4perl'   => 0 ,
 		    },
+   build_requires => { 'Test::Pod' => 0 },
    recommends    => {
                      'Config::Model::CursesUI' => 0, # Curses interface
                      'Config::Model::TkUI'     => 0, # graphical interface

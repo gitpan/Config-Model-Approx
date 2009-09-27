@@ -1,12 +1,14 @@
 ---
 name: Config-Model-Approx
-version: 1.001
+version: 1.002
 author:
   - Dominique Dumont (ddumont at cpan dot org)
 abstract: Approx configuration files editor
 license: lgpl
 resources:
   license: http://opensource.org/licenses/lgpl-license.php
+build_requires:
+  Test::Pod: 0
 requires:
   Config::Model: 0.637
   Log::Log4perl: 0
@@ -19,7 +21,7 @@ configure_requires:
 provides:
   Config::Model::Approx:
     file: lib/Config/Model/Approx.pm
-    version: 1.001
+    version: 1.002
 generated_by: Module::Build version 0.35
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
