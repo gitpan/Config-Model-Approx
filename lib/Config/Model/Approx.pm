@@ -1,6 +1,6 @@
 # $Author: ddumont $
-# $Date: 2009-09-27 16:02:38 +0200 (dim 27 sep 2009) $
-# $Revision: 1036 $
+# $Date: 2009-10-22 11:54:11 +0200 (jeu. 22 oct. 2009) $
+# $Revision: 1037 $
 
 #    Copyright (c) 2009 Dominique Dumont.
 #
@@ -32,7 +32,7 @@ use File::Path ;
 
 use vars qw($VERSION)  ;
 
-$VERSION = '1.002' ;
+$VERSION = '1.003' ;
 
 my $logger = Log::Log4perl::get_logger(__PACKAGE__);
 
@@ -47,7 +47,9 @@ sub read {
 	s/#.*//;
 	s/\s+/=/; # translate file in string loadable by C::M::Loader
 	next unless $_;
-	my $load = s/^\$// ? $_ : "distributions:".$_;
+	my $load = s/^\$// ? $_ 
+                 : m!://!  ? "distributions:".$_
+                 :           $_ ; # old style parameter
 	$args{object}->load($load) ;
     }
 
@@ -63,7 +65,7 @@ sub write {
 
     $ioh->print("# This file was written by Config::Model with Approx model\n");
     $ioh->print("# You may modify the content of this file. Configuration \n");
-    $ioh->print("# modification will be preserved. Modification in the comments\n");
+    $ioh->print("# modifications will be preserved. Modifications in the comments\n");
     $ioh->print("# will be discarded\n\n");
 
     # Using Config::Model::ObjTreeScanner would be overkill

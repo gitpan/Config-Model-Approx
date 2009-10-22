@@ -1,6 +1,6 @@
 ---
 name: Config-Model-Approx
-version: 1.002
+version: 1.003
 author:
   - Dominique Dumont (ddumont at cpan dot org)
 abstract: Approx configuration files editor
@@ -21,7 +21,7 @@ configure_requires:
 provides:
   Config::Model::Approx:
     file: lib/Config/Model/Approx.pm
-    version: 1.002
+    version: 1.003
 generated_by: Module::Build version 0.35
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
