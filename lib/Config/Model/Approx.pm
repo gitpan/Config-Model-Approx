@@ -1,8 +1,5 @@
-# $Author: ddumont $
-# $Date: 2009-10-22 11:54:11 +0200 (jeu. 22 oct. 2009) $
-# $Revision: 1037 $
 
-#    Copyright (c) 2009 Dominique Dumont.
+#    Copyright (c) 2009-2011 Dominique Dumont.
 #
 #    This file is part of Config-Model-Approx.
 #
@@ -30,9 +27,7 @@ use Log::Log4perl;
 use File::Copy ;
 use File::Path ;
 
-use vars qw($VERSION)  ;
-
-$VERSION = '1.003' ;
+our $VERSION = '1.004' ;
 
 my $logger = Log::Log4perl::get_logger(__PACKAGE__);
 
