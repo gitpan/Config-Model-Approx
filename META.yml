@@ -1,29 +1,34 @@
 ---
-abstract: 'Approx configuration files editor'
+abstract: 'Approx configuration file editor'
 author:
-  - 'Dominique Dumont (ddumont at cpan dot org)'
+  - 'Dominique Dumont'
 build_requires:
-  Test::Pod: 0
+  File::Copy::Recursive: 0
+  Module::Build: 0.3601
+  Test::Differences: 0
+  Test::Exception: 0
+  Test::File::Contents: 0
+  Test::Memory::Cycle: 0
+  Test::More: 0
+  Test::Warn: 0
 configure_requires:
-  Module::Build: 0.38
-dynamic_config: 1
-generated_by: 'Module::Build version 0.38, CPAN::Meta::Converter version 2.110930'
-license: open_source
+  Module::Build: 0.3601
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 4.300025, CPAN::Meta::Converter version 2.120921'
+license: lgpl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: Config-Model-Approx
-provides:
-  Config::Model::Approx:
-    file: lib/Config/Model/Approx.pm
-    version: 1.004
 recommends:
   Config::Model::CursesUI: 0
   Config::Model::TkUI: 0
 requires:
-  Config::Model: 1.245
-  Log::Log4perl: 0
-  perl: v5.8.0
+  Config::Model: 2.017
+  File::Slurp: 0
+  Log::Log4perl: 1.11
 resources:
-  license: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
-version: 1.004
+  bugtracker: http://rt.cpan.org/NoAuth/Bugs.html?Dist=Config-Model-Approx
+  homepage: https://github.com/dod38fr/config-model/wiki
+  repository: git://github.com/dod38fr/config-model-approx.git
+version: 1.005

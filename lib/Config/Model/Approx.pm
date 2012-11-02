@@ -1,23 +1,17 @@
-
-#    Copyright (c) 2009-2011 Dominique Dumont.
 #
-#    This file is part of Config-Model-Approx.
+# This file is part of Config-Model-Approx
 #
-#    Config-Model-Approx is free software; you can redistribute it and/or
-#    modify it under the terms of the GNU Lesser Public License as
-#    published by the Free Software Foundation; either version 2.1 of
-#    the License, or (at your option) any later version.
+# This software is Copyright (c) 2012 by Dominique Dumont.
 #
-#    Config-Model-Approx is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-#    Lesser Public License for more details.
+# This is free software, licensed under:
 #
-#    You should have received a copy of the GNU Lesser Public License
-#    along with Config-Model; if not, write to the Free Software
-#    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+#   The GNU Lesser General Public License, Version 2.1, February 1999
+#
 
 package Config::Model::Approx ;
+{
+  $Config::Model::Approx::VERSION = '1.005';
+}
 
 use strict ;
 use warnings ;
@@ -27,8 +21,6 @@ use Log::Log4perl;
 use File::Copy ;
 use File::Path ;
 
-our $VERSION = '1.004' ;
-
 my $logger = Log::Log4perl::get_logger(__PACKAGE__);
 
 sub read {
@@ -36,6 +28,8 @@ sub read {
     my %args = @_ ;
 
     $logger->info("loading config file $args{file}") if defined $args{file};
+
+    die "Cannot read $args{config_dir}$args{file}\n" unless defined $args{io_handle} ;
 
     foreach ($args{io_handle}->getlines) {
 	chomp;
@@ -81,7 +75,7 @@ sub write {
 
     my $h = $node->fetch_element('distributions') ;
     $ioh->print("# ", $node->get_help(summary => 'distributions'),"\n");
-    foreach my $dname ($h->get_all_indexes) {
+    foreach my $dname ($h->fetch_all_indexes) {
 	$ioh->printf("%-10s %s\n",$dname,
 		     $node->grab_value("distributions:$dname")
 		    ) ;
@@ -98,28 +92,33 @@ Config::Model::Approx - Approx configuration file editor
 
 =head1 SYNOPSIS
 
+ # full blown editor
+ sudo cme edit approx
+ 
+ # command line use
+ sudo cme modify approx distributions:multimedia=http://www.debian-multimedia.org
+
  use Config::Model ;
  my $model = Config::Model -> new ( ) ;
 
  my $inst = $model->instance (root_class_name   => 'Approx');
  my $root = $inst -> config_root ;
 
- $root->load("distribution:multimedia=http://www.debian-multimedia.org") ;
+ $root->load("distributions:multimedia=http://www.debian-multimedia.org") ;
 
  $inst->write_back() ;
 
 =head1 DESCRIPTION
 
-This module provides a configuration model for Approx. Then
-Config::Model provides a graphical editor program for
-F</etc/approx/approx.conf>. See L<config-edit-approx> more help.
-
-This module and Config::Model can also be used from Perl programs to
-modify safely the content of F</etc/approx/approx.conf>.
+This module provides a configuration editor for Approx. Running L<cme> as root
+will update C</etc/approx/approc.conf>.
 
 Once this module is installed, you can run:
 
- # config-edit-approx
+ # cme edit approx
+
+This module and Config::Model can also be used from Perl programs to
+modify safely the content of F</etc/approx/approx.conf>.
 
 The Perl API is documented in L<Config::Model> and mostly in
 L<Config::Model::Node>.
@@ -145,7 +144,7 @@ Dominique Dumont, (ddumont at cpan dot org)
 
 =head1 LICENSE
 
-   Copyright (c) 2009 Dominique Dumont.
+   Copyright (c) 2009,2012 Dominique Dumont.
 
    This file is part of Config-Model-Approx.
 

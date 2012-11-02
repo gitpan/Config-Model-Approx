@@ -1,10 +1,15 @@
+#
+# This file is part of Config-Model-Approx
+#
+# This software is Copyright (c) 2012 by Dominique Dumont.
+#
+# This is free software, licensed under:
+#
+#   The GNU Lesser General Public License, Version 2.1, February 1999
+#
 [
   {
-    'class_description' => 'Configuration model to edit C</etc/approc/approx.conf>. This file can be edited with the following command:
-
- config-edit -application approx
-
-',
+    'class_description' => 'Configuration model for Approx',
     'read_config' => [
       {
         'file' => 'approx.conf',
@@ -45,7 +50,7 @@
         'value_type' => 'uniline',
         'summary' => 'maximum download rate from remote repositories',
         'type' => 'leaf',
-        'description' => "Specifies the maximum download rate from remote repositories, in bytes per second (default: unlimited). The value may be suf\x{2010} fixed with \"K\", \"M\", or \"G\" to indicate kilobytes, megabytes, or gigabytes per second, respectively."
+        'description' => "Specifies the maximum download rate from remote repositories, in bytes per second (default: unlimited). The value may be suffixed with \"K\", \"M\", or \"G\" to indicate kilobytes, megabytes, or gigabytes per second, respectively."
       },
       'max_redirects',
       {
