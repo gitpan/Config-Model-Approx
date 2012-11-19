@@ -7,84 +7,12 @@
 #
 #   The GNU Lesser General Public License, Version 2.1, February 1999
 #
-
 package Config::Model::Approx ;
 {
-  $Config::Model::Approx::VERSION = '1.005';
+  $Config::Model::Approx::VERSION = '1.006';
 }
 
-use strict ;
-use warnings ;
-
-use Carp ;
-use Log::Log4perl;
-use File::Copy ;
-use File::Path ;
-
-my $logger = Log::Log4perl::get_logger(__PACKAGE__);
-
-sub read {
-    # keys are object , root,  config_dir, io_handle, file
-    my %args = @_ ;
-
-    $logger->info("loading config file $args{file}") if defined $args{file};
-
-    die "Cannot read $args{config_dir}$args{file}\n" unless defined $args{io_handle} ;
-
-    foreach ($args{io_handle}->getlines) {
-	chomp;
-	s/#.*//;
-	s/\s+/=/; # translate file in string loadable by C::M::Loader
-	next unless $_;
-	my $load = s/^\$// ? $_ 
-                 : m!://!  ? "distributions:".$_
-                 :           $_ ; # old style parameter
-	$args{object}->load($load) ;
-    }
-
-    return 1;
-}
-
-sub write {
-    my %args = @_ ;
-
-    $logger->info("writing config file $args{file}");
-    my $node = $args{object} ;
-    my $ioh  = $args{io_handle} ;
-
-    $ioh->print("# This file was written by Config::Model with Approx model\n");
-    $ioh->print("# You may modify the content of this file. Configuration \n");
-    $ioh->print("# modifications will be preserved. Modifications in the comments\n");
-    $ioh->print("# will be discarded\n\n");
-
-    # Using Config::Model::ObjTreeScanner would be overkill
-    foreach my $elt ($node->get_element_name) {
-	next if $elt eq 'distributions';
-
-	# write some documentation in comments
-	$ioh->print("# $elt:", $node->get_help(summary => $elt));
-	my $upstream_default = $node->fetch_element($elt) -> fetch('upstream_default') ;
-	$ioh->print(" ($upstream_default)") if defined $upstream_default;
-	$ioh->print("\n") ;
-
-	# write value
-	my $v = $node->grab_value($elt) ;
-	$ioh->printf("\$%-10s %s\n",$elt,$v) if defined $v ;
-	$ioh->print("\n") ;
-    }
-
-    my $h = $node->fetch_element('distributions') ;
-    $ioh->print("# ", $node->get_help(summary => 'distributions'),"\n");
-    foreach my $dname ($h->fetch_all_indexes) {
-	$ioh->printf("%-10s %s\n",$dname,
-		     $node->grab_value("distributions:$dname")
-		    ) ;
-    }
-    return 1;
-
-}
-
-1;
+1 ;
 
 =head1 NAME
 
@@ -123,21 +51,6 @@ modify safely the content of F</etc/approx/approx.conf>.
 The Perl API is documented in L<Config::Model> and mostly in
 L<Config::Model::Node>.
 
-=head1 Functions
-
-These functions are declared in Approx configuration models and are
-called back.
-
-=head2 read (object => approx_root>, io_handle => ...)
-
-Read F<approx.conf> and load the data in the C<approx_root>
-configuration tree.
-
-=head2 write (object => approx_root>, io_handle => ...)
-
-Write data from the C<approx_root> configuration tree into
-F<approx.conf>.
-
 =head1 AUTHOR
 
 Dominique Dumont, (ddumont at cpan dot org)
@@ -164,4 +77,4 @@ Dominique Dumont, (ddumont at cpan dot org)
 
 =head1 SEE ALSO
 
-L<config-edit-approx>, L<Config::Model>,
+L<cme>, L<Config::Model>,

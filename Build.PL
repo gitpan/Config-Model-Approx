@@ -36,7 +36,23 @@ require 5.010;
 
 my %appli_files = map { ( $_, $_ ) } glob("lib/Config/Model/*.d/*");
 
-my $build = Module::Build->new
+# check that pod docs are up-to-date this is redundant with work done by
+# dzil. But this enable to re-build the docs downstream.
+# Use $^X in there as requested in 
+# https://rt.cpan.org/Public/Bug/Display.html?id=74891
+my $class = Module::Build->subclass(
+    class => "Module::Build::Custom",
+    code => <<'SUBCLASS' );
+
+sub ACTION_build {
+    my $self = shift;
+    # below requires Config::Model 2.026
+    system ($^X, qw!-Ilib script/cme gen-class-pod!) ;
+    $self->SUPER::ACTION_build;
+}
+SUBCLASS
+
+my $build = $class->new
   (
    module_name   => 'Config::Model::Approx',
    license       => 'lgpl',
@@ -55,6 +71,10 @@ my $build = Module::Build->new
     'Test::Warn' => '0'
   },
   'configure_requires' => {
+    'Any::Moose' => '0',
+    'Config::Model' => '2.026',
+    'File::Slurp' => '0',
+    'Log::Log4perl' => '1.11',
     'Module::Build' => '0.3601'
   },
   'recommends' => {
@@ -62,12 +82,12 @@ my $build = Module::Build->new
     'Config::Model::TkUI' => '0'
   },
   'requires' => {
-    'Config::Model' => '2.017',
+    'Config::Model' => '2.026',
     'File::Slurp' => '0',
     'Log::Log4perl' => '1.11'
   },
 
-   add_to_cleanup => [qw/wr_test/] ,
+   add_to_cleanup => [qw/wr_root/] ,
   );
 
 

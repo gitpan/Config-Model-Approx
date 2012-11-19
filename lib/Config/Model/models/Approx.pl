@@ -10,12 +10,16 @@
 [
   {
     'class_description' => 'Configuration model for Approx',
-    'read_config' => [
+    'accept' => [
+      '.*',
       {
-        'file' => 'approx.conf',
-        'backend' => 'custom',
-        'class' => 'Config::Model::Approx',
-        'config_dir' => '/etc/approx'
+        'value_type' => 'uniline',
+        'summary' => 'unknown parameter',
+        'type' => 'leaf',
+        'description' => 'Either the configuration file has an error or the author of this
+module forgot to implement this parameter. In the latter case, please
+file a bug on CPAN request tracker:
+http://rt.cpan.org/NoAuth/Bugs.html?Dist=Config-Model-Approx'
       }
     ],
     'name' => 'Approx',
@@ -50,7 +54,7 @@
         'value_type' => 'uniline',
         'summary' => 'maximum download rate from remote repositories',
         'type' => 'leaf',
-        'description' => "Specifies the maximum download rate from remote repositories, in bytes per second (default: unlimited). The value may be suffixed with \"K\", \"M\", or \"G\" to indicate kilobytes, megabytes, or gigabytes per second, respectively."
+        'description' => 'Specifies the maximum download rate from remote repositories, in bytes per second (default: unlimited). The value may be suffixed with "K", "M", or "G" to indicate kilobytes, megabytes, or gigabytes per second, respectively.'
       },
       'max_redirects',
       {
@@ -135,6 +139,13 @@
 Use the distribution name as the key of the hash element and the URL as the value
 ',
         'index_type' => 'string'
+      }
+    ],
+    'read_config' => [
+      {
+        'file' => 'approx.conf',
+        'backend' => 'Approx',
+        'config_dir' => '/etc/approx'
       }
     ]
   }
