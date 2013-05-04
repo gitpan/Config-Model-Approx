@@ -9,10 +9,10 @@
 #
 package Config::Model::Backend::Approx ;
 {
-  $Config::Model::Backend::Approx::VERSION = '1.006';
+  $Config::Model::Backend::Approx::VERSION = '1.007';
 }
 
-use Any::Moose ;
+use Mouse ;
 use Log::Log4perl qw(get_logger :levels);
 use Carp ;
 use File::Copy ;

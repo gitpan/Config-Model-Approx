@@ -47,7 +47,7 @@ my $class = Module::Build->subclass(
 sub ACTION_build {
     my $self = shift;
     # below requires Config::Model 2.026
-    system ($^X, qw!-Ilib script/cme gen-class-pod!) ;
+    system ($^X, qw!-Ilib -S cme gen-class-pod!) ;
     $self->SUPER::ACTION_build;
 }
 SUBCLASS
@@ -62,7 +62,7 @@ my $build = $class->new
  
   'build_requires' => {
     'File::Copy::Recursive' => '0',
-    'Module::Build' => '0.3601',
+    'Module::Build' => '0.34',
     'Test::Differences' => '0',
     'Test::Exception' => '0',
     'Test::File::Contents' => '0',
@@ -71,11 +71,11 @@ my $build = $class->new
     'Test::Warn' => '0'
   },
   'configure_requires' => {
-    'Any::Moose' => '0',
     'Config::Model' => '2.026',
     'File::Slurp' => '0',
     'Log::Log4perl' => '1.11',
-    'Module::Build' => '0.3601'
+    'Module::Build' => '0.34',
+    'Mouse' => '0'
   },
   'recommends' => {
     'Config::Model::CursesUI' => '0',
