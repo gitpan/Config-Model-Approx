@@ -9,7 +9,7 @@
 #
 package Config::Model::Backend::Approx ;
 {
-  $Config::Model::Backend::Approx::VERSION = '1.007';
+  $Config::Model::Backend::Approx::VERSION = '1.008';
 }
 
 use Mouse ;

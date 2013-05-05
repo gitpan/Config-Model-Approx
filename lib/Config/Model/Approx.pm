@@ -9,7 +9,7 @@
 #
 package Config::Model::Approx ;
 {
-  $Config::Model::Approx::VERSION = '1.007';
+  $Config::Model::Approx::VERSION = '1.008';
 }
 
 1 ;
