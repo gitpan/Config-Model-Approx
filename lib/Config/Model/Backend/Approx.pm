@@ -1,7 +1,7 @@
 #
 # This file is part of Config-Model-Approx
 #
-# This software is Copyright (c) 2012 by Dominique Dumont.
+# This software is Copyright (c) 2013 by Dominique Dumont.
 #
 # This is free software, licensed under:
 #
@@ -9,7 +9,7 @@
 #
 package Config::Model::Backend::Approx ;
 {
-  $Config::Model::Backend::Approx::VERSION = '1.008';
+  $Config::Model::Backend::Approx::VERSION = '1.009';
 }
 
 use Mouse ;

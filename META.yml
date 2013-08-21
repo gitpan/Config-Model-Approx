@@ -3,22 +3,16 @@ abstract: 'Approx configuration file editor'
 author:
   - 'Dominique Dumont'
 build_requires:
-  File::Copy::Recursive: 0
+  Config::Model::Tester: 2.042
   Module::Build: 0.34
-  Test::Differences: 0
-  Test::Exception: 0
-  Test::File::Contents: 0
-  Test::Memory::Cycle: 0
   Test::More: 0
-  Test::Warn: 0
 configure_requires:
-  Config::Model: 2.026
-  File::Slurp: 0
+  Config::Model: 2.041
   Log::Log4perl: 1.11
   Module::Build: 0.34
   Mouse: 0
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.300034, CPAN::Meta::Converter version 2.120921'
+generated_by: 'Dist::Zilla version 4.300034, CPAN::Meta::Converter version 2.132140'
 license: lgpl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -28,11 +22,11 @@ recommends:
   Config::Model::CursesUI: 0
   Config::Model::TkUI: 0
 requires:
-  Config::Model: 2.026
-  File::Slurp: 0
+  Config::Model: 2.041
   Log::Log4perl: 1.11
+  perl: v5.10.1
 resources:
   bugtracker: http://rt.cpan.org/NoAuth/Bugs.html?Dist=Config-Model-Approx
   homepage: https://github.com/dod38fr/config-model/wiki
   repository: git://github.com/dod38fr/config-model-approx.git
-version: 1.008
+version: 1.009

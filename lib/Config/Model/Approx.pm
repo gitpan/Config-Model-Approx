@@ -1,7 +1,7 @@
 #
 # This file is part of Config-Model-Approx
 #
-# This software is Copyright (c) 2012 by Dominique Dumont.
+# This software is Copyright (c) 2013 by Dominique Dumont.
 #
 # This is free software, licensed under:
 #
@@ -9,7 +9,7 @@
 #
 package Config::Model::Approx ;
 {
-  $Config::Model::Approx::VERSION = '1.008';
+  $Config::Model::Approx::VERSION = '1.009';
 }
 
 1 ;
@@ -39,7 +39,7 @@ Config::Model::Approx - Approx configuration file editor
 =head1 DESCRIPTION
 
 This module provides a configuration editor for Approx. Running L<cme> as root
-will update C</etc/approx/approc.conf>.
+will update C</etc/approx/approx.conf>.
 
 Once this module is installed, you can run:
 
@@ -71,7 +71,7 @@ Dominique Dumont, (ddumont at cpan dot org)
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
    Lesser Public License for more details.
 
-   You should have received a copy of the GNU Lesser Public License
+   You should have received a copy of the GNU Lesser General Public License
    along with Config-Model; if not, write to the Free Software
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
 
